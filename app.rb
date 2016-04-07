@@ -22,7 +22,7 @@ tenants = data[:tenants]
     # puts cheaper_apartments
   # Print only tenants that are over the age of 44
     # older_tenants = tenants.select do |tenant|
-    #   apartment[:age] > 44
+    #   tenant[:age] > 44
     # end
     # puts older_tenants
   # Print only tenants that have an apartment id of 1
@@ -34,17 +34,20 @@ tenants = data[:tenants]
     # age_ordered_tenants = tenants.sort_by do |tenant|
     #   tenant[:age]
     # end
+    # puts age_ordered_tenants
   # Print the names of all the tenants alphabetically
-    # name_ordered_tenants = tenants.sort_by do |a, b|
+    # name_ordered_tenants = tenants.sort do |a, b|
     #   a[:name].downcase <=> b[:name].downcase
     # end
+    # puts name_ordered_tenants
 
   ## More challenging
   # When printing tenants also print out the address that the tenant resides in.
     # tenants.each do |tenant|
     #   puts tenant[:name]
     #   tenants_apartment = apartments.find{|apartment| apartment[:id] == tenant[:apartment_id]}
-    #   puts tenants_apartment[:name]
+    #   puts tenants_apartment[:address]
+    #   puts nil # empty line
     # end
 
   # When printing all apartments, under each apartment print all of its tenants
@@ -54,4 +57,5 @@ tenants = data[:tenants]
     #   tenants_of_apartment.each do |tenant|
     #     puts tenant[:name]
     #   end
+    #   puts nil # empty line
     # end
