@@ -24,7 +24,7 @@ def starting_prompt()
   end
 end
 
-puts starting_prompt()
+starting_prompt()
 
 
 
