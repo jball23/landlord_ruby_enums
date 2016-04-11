@@ -1,30 +1,37 @@
 require_relative "data"
-# apartments = data[:apartments]
-# tenants = data[:tenants]
+require_relative "models/apartment"
+require_relative "models/tenant"
+apartments = data[:apartments]
+tenants = data[:tenants]
+ruby_apartments = []
+ruby_tenants = []
 
-def starting_prompt()
-  apartments = data[:apartments]
-  tenants = data[:tenants]
-
-  puts "Welcome to MyAppartmentManager.com"
-  puts "1) To View All Apartments"
-  puts "2) To View All Tenants"
-  puts "3) To Exit"
-
-  selection = gets.chomp.to_i
-
-  if selection == 1
-    puts apartments
-  elsif selection == 2
-    puts tenants
-  else
-    puts "Thanks for using MyAppartmentManager.com!"
-    puts "If you would like to use our service again,"
-    puts "please reload this page."
-  end
+ruby_apartments = apartments.each do |id, address, rent, size|
+   ruby_apartments.push(Apartment.new(id, address, rent, size))
 end
 
-starting_prompt()
+ruby_tenants = tenants.each do |id, name, age, apartment_id|
+   ruby_tenants.push(Tenant.new(id, name, age, apartment_id))
+end
+
+puts "Welcome to MyAppartmentManager.com"
+puts "1) To View All Apartments"
+puts "2) To View All Tenants"
+puts "3) To Exit"
+
+selection = gets.chomp.to_i
+
+if selection == 1
+  puts ruby_apartments
+elsif selection == 2
+  puts ruby_tenants
+else
+  puts "Thanks for using MyAppartmentManager.com!"
+  puts "If you would like to use our service again,"
+  puts "please reload this page."
+end
+
+
 
 
 
@@ -37,35 +44,37 @@ starting_prompt()
 
 # Use enumerables to -
   # Print all the addresses for the apartments
-  # addresses = apartments.map do |apartment|
-  #   apartment[:address]
-  # end
-
+#   addresses = ruby_apartments.map do |apartment|
+#     apartment[:address]
+#   end
+#   puts addresses
 
   # Print all the names for tenants
-  # names = tenants.map do |name|
+  # names = ruby_tenants.map do |name|
   #   name[:name]
   # end
-
+  # puts names
 
   # Print only apartments that are less then 700 in rent
-  # small_apartments = apartments.select{ |rent| rent[:monthly_rent] < 700}
-
+  # cheap_apartments = ruby_apartments.select{ |rent| rent[:monthly_rent] < 700}
+  # puts cheap_apartments
 
   # Print only tenants that are over the age of 44
-  # old_tenants = tenants.select{ |age| age[:age] > 44}
-
+  # old_tenants = ruby_tenants.select{ |age| age[:age] > 44}
+  # puts old_tenants
 
   # Print only tenants that have an apartment id of 1
-  # id_1 = tenants.select{ |id| id[:apartment_id] == 1}
-
+  # apt_1 = ruby_tenants.select{ |apt| apt[:apartment_id] == 1}
+  # puts apt_1
 
   # Print all the tenants in order from youngest to oldest
-  # young_to_old = tenants.sort_by{ |age| age[:age]}
+  # young_to_old = ruby_tenants.sort_by{ |age| age[:age]}
+  # puts young_to_old
 
 
   # Print the names of all the tenants alphabetically
-  # names_alphabetical = tenants.sort_by{ |name| name[:name]}
+  # names_alphabetical = ruby_tenants.sort_by{ |name| name[:name]}
+  # puts names_alphabetical
 
 
   ## More challenging
